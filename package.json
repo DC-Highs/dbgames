@@ -1,5 +1,5 @@
 {
-  "name": "@dchighs/dbgames-scraper",
+  "name": "@dchighs/dbgames",
   "version": "0.1.0",
   "type": "commonjs",
   "main": "./dist/index.js",
@@ -31,5 +31,13 @@
     "prettier-plugin-sort-imports": "^1.8.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@dchighs/dc-core": "^0.3.0",
+    "@dchighs/dc-localization": "^0.0.6",
+    "@xcrap/axios-client": "^0.0.8",
+    "@xcrap/core": "^0.2.1",
+    "@xcrap/parser": "^0.1.11",
+    "@xcrap/transformer": "^0.2.0"
   }
 }
