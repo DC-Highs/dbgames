@@ -28,7 +28,6 @@ export class Client {
         }
 
         const url = `${baseUrl}${path}?${query.toString()}`
-        console.log(url)
         const response = await this.client.fetch({ url: url })
         const parser = response.asHtmlParser()
 
