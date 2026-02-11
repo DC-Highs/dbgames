@@ -1,5 +1,5 @@
 import { StringTransformer, Transformer } from "@xcrap/transformer"
-import { Localization } from "@dchighs/dc-localization"
+import type { Localization } from "@dchighs/dc-localization"
 import { css, xpath, extract } from "@xcrap/extractor"
 
 import { ValueOfEnum, pickKeys, extractAttackIdFromNameKey, extractPageNumberFromUrl } from "./utils"
