@@ -1,92 +1,71 @@
-import { extract, HtmlParsingModel } from "@xcrap/parser"
+import { css, extract, HtmlExtractionModel } from "@xcrap/extractor"
 
-export const dragonPageParsingModel = new HtmlParsingModel({
+export const dragonPageExtractionModel = new HtmlExtractionModel({
     heading: {
-        query: ".result-data:has(.entitytabledata) .subtitle:first-child",
+        query: css(".result-data:has(.entitytabledata) .subtitle:first-child"),
         extractor: extract("textContent"),
     },
     description: {
-        query: ".result-data:has(.entitytabledata) .col-sm-12.rhs.text-data",
+        query: css(".result-data:has(.entitytabledata) .col-sm-12.rhs.text-data"),
         extractor: extract("innerText"),
     },
     rarity: {
-        query: ".result-data:has(.entitytabledata) .rarity .iconized-text",
+        query: css(".result-data:has(.entitytabledata) .rarity .iconized-text"),
         extractor: extract("innerText"),
     },
     elements: {
-        query: ".result-data:has(.entitytabledata) .element",
+        query: css(".result-data:has(.entitytabledata) .element"),
         multiple: true,
         extractor: extract("innerText"),
     },
     hatchingTime: {
-        query: ".result-data:has(.entitytabledata) tr:nth-child(4) .iconized-text",
+        query: css(".result-data:has(.entitytabledata) tr:nth-child(4) .iconized-text"),
         extractor: extract("innerText"),
     },
     breedingTime: {
-        query: ".result-data:has(.entitytabledata) tr:nth-child(3) .iconized-text",
+        query: css(".result-data:has(.entitytabledata) tr:nth-child(3) .iconized-text"),
         extractor: extract("innerText"),
     },
     goldProductionInfo: {
-        query: ".result-data:has(.entitytabledata) tr:nth-child(5) .iconized-text",
+        query: css(".result-data:has(.entitytabledata) tr:nth-child(5) .iconized-text"),
         default: null,
         extractor: extract("innerText"),
     },
     hatchingExperience: {
-        query: ".result-data:has(.entitytabledata) tr:nth-child(6) .iconized-text",
+        query: css(".result-data:has(.entitytabledata) tr:nth-child(6) .iconized-text"),
         extractor: extract("innerText"),
         default: null,
     },
     firstImageUrl: {
-        query: ".result-data:has(.entitytabledata) .col-xs-4:nth-child(1) .entityimg",
-        extractor: extract("src", true),
+        query: css(".result-data:has(.entitytabledata) .col-xs-4:nth-child(1) .entityimg"),
+        extractor: extract("src"),
+        default: null,
     },
     xpOnHatching: {
-        query: ".result-data:has(.entitytabledata) tr:nth-child(6) .iconized-text",
+        query: css(".result-data:has(.entitytabledata) tr:nth-child(6) .iconized-text"),
         extractor: extract("innerText"),
         default: null,
     },
-    basicAttacks: {
-        query: ".result-data:nth-child(2) table tbody tr",
+    allAttacks: {
+        query: css(".result-data:has(.text-right) > .row > .col-sm-12 > table > tbody > tr:not(:has(.subtitle))"),
         multiple: true,
-        model: new HtmlParsingModel({
+        model: new HtmlExtractionModel({
             name: {
-                query: ".wauto:nth-child(1)",
-                extractor: extract("innerText")
+                query: css("td:nth-child(1)"),
+                extractor: extract("innerText"),
             },
             element: {
-                query: ".wauto:nth-child(2)",
-                extractor: extract("innerText")
+                query: css("td:nth-child(2) a"),
+                extractor: extract("innerText"),
             },
             trainingTime: {
-                query: ".wauto:nth-child(3) .text-center",
-                extractor: extract("innerText")
+                query: css("td:nth-child(3) .text-center"),
+                extractor: extract("innerText"),
             },
             power: {
-                query: ".wauto:nth-child(3) .text-right",
-                extractor: extract("innerText")
-            }
-        })
+                query: css("td:nth-child(3) .text-right"),
+                extractor: extract("innerText"),
+            },
+        }),
     },
-    trainableAttacks: {
-        query: ".result-data:nth-child(2) table tbody tr",
-        multiple: true,
-        model: new HtmlParsingModel({
-            name: {
-                query: ".wauto:nth-child(1)",
-                extractor: extract("innerText")
-            },
-            element: {
-                query: ".wauto:nth-child(2)",
-                extractor: extract("innerText")
-            },
-            trainingTime: {
-                query: ".wauto:nth-child(3) .text-center",
-                extractor: extract("innerText")
-            },
-            power: {
-                query: ".wauto:nth-child(3) .text-right",
-                extractor: extract("innerText")
-            }
-        })
-    }
 })

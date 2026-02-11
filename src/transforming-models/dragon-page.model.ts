@@ -1,10 +1,77 @@
 import { ArrayTransformer, StringTransformer, transform, TransformingModel } from "@xcrap/transformer"
 import { DragonElement, DragonStaticFileUrlParser, elementSettings } from "@dchighs/dc-core"
 
+import { stringDurationToSeconds, stringTimeToSeconds } from "../utils"
 import { regexHelper } from "../helpers/regex.helper"
-import { stringTimeToSeconds } from "../utils"
 
-export const dragonTransformingModel = new TransformingModel({
+const attackTransformingModel = new TransformingModel({
+    name: [
+        transform({
+            key: "name",
+            transformer: StringTransformer.trim,
+        }),
+        transform({
+            key: "name",
+            condition: (value) => value === "Judo Kick",
+            transformer: () => "Judo Throw",
+        }),
+        transform({
+            key: "name",
+            condition: (value) => value === "Karate Brick Break",
+            transformer: () => "Brick Break",
+        }),
+        transform({
+            key: "name",
+            condition: (value) => value === "Head Butt",
+            transformer: () => "Headbutt",
+        }),
+        transform({
+            key: "name",
+            condition: (value) => value === "Original Pain",
+            transformer: () => "Archaic Pain",
+        }),
+    ],
+    type: [
+        transform({
+            key: "element",
+            transformer: StringTransformer.trim,
+        }),
+        transform({
+            key: "type",
+            transformer: StringTransformer.toLowerCase,
+        }),
+    ],
+    element: [
+        transform({
+            key: "element",
+            transformer: StringTransformer.trim,
+        }),
+        transform({
+            key: "element",
+            transformer: StringTransformer.toLowerCase,
+        }),
+        transform({
+            key: "element",
+            transformer: (element: DragonElement) => elementSettings[element].acronym,
+        }),
+    ],
+    ui_damage: [
+        transform({
+            key: "power",
+            transformer: StringTransformer.toNumber,
+        }),
+    ],
+    training_time: [
+        transform({
+            key: "trainingTime",
+            transformer: stringDurationToSeconds,
+        }),
+    ],
+}).after({
+    delete: ["power", "trainingTime"],
+})
+
+export const dragonPageTransformingModel = new TransformingModel({
     id: [
         transform({
             key: "heading",
@@ -49,6 +116,17 @@ export const dragonTransformingModel = new TransformingModel({
             transformer: StringTransformer.substr(0, 1),
         }),
     ],
+    tempAttacks: [
+        transform({
+            key: "allAttacks",
+            transformer: ArrayTransformer.slice(0, 4),
+        }),
+    ],
+    attacks: {
+        key: "tempAttacks",
+        multiple: true,
+        model: attackTransformingModel,
+    },
     attributes: [
         transform({
             key: "elements",
@@ -61,6 +139,17 @@ export const dragonTransformingModel = new TransformingModel({
             },
         }),
     ],
+    tempTrainableAttacks: [
+        transform({
+            key: "allAttacks",
+            transformer: ArrayTransformer.slice(4, 8),
+        }),
+    ],
+    trainable_attacks: {
+        key: "tempTrainableAttacks",
+        multiple: true,
+        model: attackTransformingModel,
+    },
     img_name: [
         transform({
             key: "firstImageUrl",
@@ -156,6 +245,9 @@ export const dragonTransformingModel = new TransformingModel({
         "xpOnHatching",
         "firstImageUrl",
         "elements",
+        "tempAttacks",
+        "allAttacks",
+        "tempTrainableAttacks",
         "hatchingTime",
         "breedingTime",
     ],

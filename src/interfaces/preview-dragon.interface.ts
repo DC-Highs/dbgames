@@ -1,4 +1,4 @@
-export interface IPreviewDragon {
+export interface PreviewDragon {
     data: {
         id: number
         name: string

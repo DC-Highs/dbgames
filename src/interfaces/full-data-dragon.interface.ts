@@ -1,4 +1,17 @@
-export interface FullDataDragon {
+type Attack<Aggregate extends boolean> = {
+    name: string
+    type: string
+    element: string
+    ui_damage: number
+    training_time: number
+} & (Aggregate extends true
+    ? {
+          id: number | null
+          name_key: string
+      }
+    : {})
+
+export interface FullDataDragon<Aggregate extends boolean> {
     data: {
         id: number
         name: string
@@ -14,8 +27,8 @@ export interface FullDataDragon {
         dragon_rarity: string
         attributes: Array<string>
         img_name: string
-        attacks: {}[]
-        trainable_attacks: {}[]
+        attacks: Attack<Aggregate>[]
+        trainable_attacks: Attack<Aggregate>[]
     }
     meta: {
         pageUrl: string

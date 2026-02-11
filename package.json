@@ -18,7 +18,10 @@
     "access": "public"
   },
   "keywords": [
-    "marcuth"
+    "dbgames",
+    "dbgames.info dragon city",
+    "dragon city data",
+    "dragon city api"
   ],
   "author": "Marcuth",
   "license": "MIT",
@@ -36,8 +39,8 @@
     "@dchighs/dc-core": "^0.3.0",
     "@dchighs/dc-localization": "^0.0.6",
     "@xcrap/axios-client": "^0.0.8",
-    "@xcrap/core": "^0.2.1",
-    "@xcrap/parser": "^0.1.11",
-    "@xcrap/transformer": "^0.2.0"
+    "@xcrap/core": "^0.2.3",
+    "@xcrap/extractor": "^0.3.1",
+    "@xcrap/transformer": "^0.3.1"
   }
 }

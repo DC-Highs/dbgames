@@ -23,11 +23,12 @@ export class Client {
 
         for (const [key, value] of Object.entries(params ?? {})) {
             if (value === undefined) continue
-            if (key === "p" && Number(value) <= 2) continue
+            if (key === "p" && Number(value) < 2) continue
             query.append(key, String(value))
         }
 
         const url = `${baseUrl}${path}?${query.toString()}`
+        console.log(url)
         const response = await this.client.fetch({ url: url })
         const parser = response.asHtmlParser()
 

@@ -3,4 +3,5 @@ export const regexHelper = {
     dragonName: /^\s*(.+?)\s*\[(\d+)\]\s*$/,
     dragonStartingCoins: /^(\d+)/,
     dragonCoinsIncome: /\((\d+)\s*x/,
+    dragonAttackId: /^tid_attack_name_(?<id>\d+)$/,
 }

@@ -1,11 +1,11 @@
-import { HtmlParsingModel } from "@xcrap/parser"
+import { css, HtmlExtractionModel } from "@xcrap/extractor"
 
-import { dragonParsingModel } from "./dragon.model"
+import { dragonExtractionModel } from "./dragon.model"
 
-export const dragonsPageParsingModel = new HtmlParsingModel({
+export const dragonsPageExtractionModel = new HtmlExtractionModel({
     dragons: {
-        query: ".result-data",
+        query: css(".result-data:has(.col-sm-12.rhs.text-data)"),
         multiple: true,
-        model: dragonParsingModel,
+        model: dragonExtractionModel,
     },
 })
