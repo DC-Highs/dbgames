@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@dchighs/dc-core": "^0.3.0",
-    "@xcrap/axios-client": "^0.0.8",
+    "@xcrap/axios-client": "^0.0.9",
     "@xcrap/core": "^0.2.3",
     "@xcrap/extractor": "^0.3.1",
     "@xcrap/transformer": "^0.3.1"
