@@ -40,7 +40,7 @@
     "@xcrap/axios-client": "^0.0.8",
     "@xcrap/core": "^0.2.3",
     "@xcrap/extractor": "^0.3.1",
-    "@xcrap/transformer": "^0.3.1"
+    "@xcrap/transformer": "^0.3.7"
   },
   "peerDependencies": {
     "@dchighs/dc-localization": "*"
