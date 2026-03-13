@@ -36,7 +36,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@dchighs/dc-core": "^0.3.0",
+    "@dchighs/dc-core": "^0.4.1",
     "@xcrap/axios-client": "^0.0.9",
     "@xcrap/core": "^0.2.3",
     "@xcrap/extractor": "^0.3.2",
